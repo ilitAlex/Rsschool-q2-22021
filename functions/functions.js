@@ -44,21 +44,34 @@ exports.fromStdin = function (args) {
 
 };
 
+//AOPZ PZ ZLJYLA
+//aopz pz zljyla
+
 
 function encoding (content, shift, action) {
     let textOutput = []
-    if (action === 'decode') {shift = -(shift)}
+    if (action === 'decode') {shift = -(shift); console.log(shift)}
     content.split('').map((el) => {
         let elWithShift = el.charCodeAt() + shift;
+        console.log(elWithShift)
         if (el.search(/[A-Z]/g) !== -1) {
             if (elWithShift > 90) {
                 elWithShift = elWithShift % 90 + 64
             }
+            if ((elWithShift  + shift) < 65) {
+                elWithShift = 90 - (64 % elWithShift )
+            }
+
+            console.log(String.fromCharCode(elWithShift))
             textOutput.push(String.fromCharCode(elWithShift))
+            console.log(textOutput)
         }
         if (el.search(/[a-z]/g) !== -1) {
             if (elWithShift > 122) {
                 elWithShift = elWithShift % 122 + 96
+            }
+            if ((elWithShift + shift) < 97) {
+                elWithShift = 122 - ( 96 % elWithShift)
             }
             textOutput.push(String.fromCharCode(elWithShift))
         }
